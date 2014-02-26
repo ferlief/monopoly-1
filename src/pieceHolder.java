@@ -22,10 +22,10 @@ public class pieceHolder extends JPanel
 		add(carLabel);
 		add(dogLabel);
 		add(shipLabel);
-		//hatLabel.setVisible(false);
-		//carLabel.setVisible(false);
-		//dogLabel.setVisible(false);
-		//shipLabel.setVisible(false);		
+		hatLabel.setVisible(false);
+		carLabel.setVisible(false);
+		dogLabel.setVisible(false);
+		shipLabel.setVisible(false);		
 	}
 	
 	public void revealPiece(int i)
