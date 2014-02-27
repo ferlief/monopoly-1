@@ -33,13 +33,27 @@ public class Game
                     if(player1.inJail == false)
                     {
                         dice.Roll();
-			move(player1, dice.getSum(), gameBoard);
+                        //If they rolled 3 doubles in a row, they go to jail
+                        if (player1.doublesInARow == 3)
+                        {
+                            player1.location = 10;
+                            player1.inJail = true;
+                            player1.doublesInARow = 0;
+                        }
+                        else
+                        {
+                            if (dice.CheckIfEqual() == true)
+                            {
+                                player1.doublesInARow = player1.doublesInARow + 1;
+                            }
+                            move(player1, dice.getSum(), gameBoard);
+                        }
                     }
                     //If he's in jail, he rolls three times until he gets a double
                     else
                     {
                         //If he's already tried three times, he pays and rolls like normal
-                        if (player1.jailRollCounter == 3);
+                        if (player1.jailRollCounter == 3)
                         {
                             player1.money = player1.money - 50;
                             player1.inJail = false;

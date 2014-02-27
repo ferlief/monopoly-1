@@ -17,6 +17,7 @@ public class Player
     public int money;
     public boolean inJail;
     public int jailRollCounter;
+    public int doublesInARow;
     
     Player()
     {
@@ -24,6 +25,7 @@ public class Player
         location = 0;
         inJail = false;
         jailRollCounter = 0;
+        doublesInARow = 0;
         //System.out.println("Type in the piece you want to be (Car, Battleship, Dog, Shoe, etc...");
         Scanner in = new Scanner(System.in);
         //name = in.next();
