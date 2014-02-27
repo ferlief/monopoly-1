@@ -11,17 +11,23 @@ import java.util.Scanner;
 
 public class Player 
 {
-    private int ID;
-    private String name = "Test " + ID;
-    private int location;
+    public int ID;
+    public String name = "Test " + ID;
+    public int location;
+    public int money;
+    public boolean inJail;
+    public int jailRollCounter;
     
     Player()
     {
+        money = 1500;
         location = 0;
+        inJail = false;
+        jailRollCounter = 0;
         //System.out.println("Type in the piece you want to be (Car, Battleship, Dog, Shoe, etc...");
         Scanner in = new Scanner(System.in);
         //name = in.next();
-        System.out.println(name);
+        System.out.println(name);    
     }
     
   /*  public void setName(String inName)

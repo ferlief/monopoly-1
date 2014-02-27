@@ -18,11 +18,15 @@ public class Dice
     private final static Random rand2 = new Random();
     
     //Rolls the dice and returns the total
-    public static int Roll()
+    public static void Roll()
     {
         die1 = rand1.nextInt(6) + 1;
         die2 = rand2.nextInt(6) + 1;
         sum = die1 + die2;
+    }
+    
+    public static int getSum()
+    {
         return sum;
     }
     
