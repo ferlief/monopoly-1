@@ -1,84 +1,105 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
+import javax.swing.*;
 
 
 public class Game 
 {
-	Player player1;
-	Player player2;
-	Player player3;
-	Player player4;
+	Player playerArray[] = new Player[4];
 	Board gameBoard;
+	String message;
 	Dice dice = new Dice();
 	int spacesToMove;
 	boolean endGame = false;
+	boolean turnEnd = false;
+	rollPanel rollPanel = new rollPanel();
 
 	Game()
 	{
 		gameBoard = new Board();
-		player1 = new Player();
-		player1.setID(1);
-		//player2 = new Player();
-		//player2.setID(2);
-		//player3 = new Player();
-		//player3.setID(3);
-		//player4 = new Player();
-		//player4.setID(4);
+		createRollPanel();
+		
+		for (int i = 0; i < 4; i++)
+		{
+			playerArray[i] = new Player(i+1);	
+		}
 	}
 	
 	public void run() throws IOException
 	{
+		gameBoard.tileArray[0].getTilePanel().playerPieces.revealPiece(1);
+		gameBoard.tileArray[0].getTilePanel().playerPieces.revealPiece(2);
+		gameBoard.tileArray[0].getTilePanel().playerPieces.revealPiece(3);
+		gameBoard.tileArray[0].getTilePanel().playerPieces.revealPiece(4);
 		while (endGame == false)
 		{
-                    //If the player isn't in jail, he can roll the dice and move
-                    if(player1.inJail == false)
-                    {
-                        dice.Roll();
-                        //If they rolled 3 doubles in a row, they go to jail
-                        if (player1.doublesInARow == 3)
-                        {
-                            player1.location = 10;
-                            player1.inJail = true;
-                            player1.doublesInARow = 0;
-                        }
-                        else
-                        {
-                            if (dice.CheckIfEqual() == true)
-                            {
-                                player1.doublesInARow = player1.doublesInARow + 1;
-                            }
-                            move(player1, dice.getSum(), gameBoard);
-                        }
-                    }
-                    //If he's in jail, he rolls three times until he gets a double
-                    else
-                    {
-                        //If he's already tried three times, he pays and rolls like normal
-                        if (player1.jailRollCounter == 3)
-                        {
-                            player1.money = player1.money - 50;
-                            player1.inJail = false;
-                            dice.Roll();
-                            move(player1, dice.getSum(), gameBoard);
-                        }
-                        //He tries to roll doubles to get out of jail.
-                        else
-                        {
-                            dice.Roll();
-                            player1.jailRollCounter = player1.jailRollCounter + 1;
-                            //If a double is rolled, he is out of jail and moves the amount of spaces
-                            if (dice.CheckIfEqual() == true)
-                            {
-                                player1.inJail = false;
-                                move(player1, dice.getSum(), gameBoard);
-                            }
-                            //If a double isn't rolled, nothing happens
-                        }
-                        
-                    }
-                        //move(player2);
-			//move(player3);
-			//move(player4);
+			for (int i = 0; i < 4; i++)
+			{
+				turnEnd = false;
+						
+				// Update info/roll panel with player info; pause until roll button is pressed.
+				updateRollPanel(playerArray[i]);
+				while (turnEnd == false)
+					try {
+						Thread.currentThread().sleep(1000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				
+				turn(playerArray[i]);	            
+            }
 		}
+	}
+	
+	public void turn(Player player)
+	{
+		//If the player isn't in jail, he can roll the dice and move
+        if(player.inJail == false)
+        {
+            dice.Roll();
+            //If they rolled 3 doubles in a row, they go to jail
+            if (player.doublesInARow == 3)
+            {
+                player.location = 10;
+                player.inJail = true;
+                player.doublesInARow = 0;
+            }
+            else
+            {
+                if (dice.CheckIfEqual() == true)
+                {
+                    player.doublesInARow = player.doublesInARow + 1;
+                }
+                move(player, dice.getSum(), gameBoard);
+            }
+        }
+        //If he's in jail, he rolls three times until he gets a double
+        else
+        {
+            //If he's already tried three times, he pays and rolls like normal
+            if (player.jailRollCounter == 3)
+            {
+            	player.money = player.money - 50;
+            	player.inJail = false;
+                dice.Roll();
+                move(player, dice.getSum(), gameBoard);
+            }
+            //He tries to roll doubles to get out of jail.
+            else
+            {
+                dice.Roll();
+                player.jailRollCounter = player.jailRollCounter + 1;
+                //If a double is rolled, he is out of jail and moves the amount of spaces
+                if (dice.CheckIfEqual() == true)
+                {
+                	player.inJail = false;
+                    move(player, dice.getSum(), gameBoard);
+                }
+                //If a double isn't rolled, nothing happens
+            }
+        }	
 	}
 	
 	// hides piece from current location, moves, then displays piece in new position
@@ -108,5 +129,38 @@ public class Game
             location = 10;
             player.inJail = true;
         }
+    }
+    
+    public void updateRollPanel(Player player)
+    {
+    	rollPanel.setMoney(player.money);
+    	rollPanel.setName(player.name);
+    	rollPanel.revalidate();
+    }
+    
+    public void createRollPanel()
+    {
+    	RollHandler rollAction = new RollHandler();
+    	
+    	JButton rollButton = new JButton("Roll the Dice.");
+    	rollButton.addActionListener(rollAction);
+    	
+    	// Add roll button.
+    	rollPanel.add(rollButton);
+		message = "You rolled " + message;
+		//JOptionPane.showMessageDialog(gameBoard.getBoardPanel(), message, "Roll", JOptionPane.PLAIN_MESSAGE);
+		int result = JOptionPane.showConfirmDialog(null, rollPanel, "Test,", JOptionPane.PLAIN_MESSAGE);
+   
+    }
+    
+    public class RollHandler implements ActionListener
+    {
+    	
+		@Override
+		public void actionPerformed(ActionEvent e) 
+		{
+			turnEnd = true;
+		}
+    	
     }
 }

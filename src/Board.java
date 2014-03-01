@@ -10,7 +10,7 @@ public class Board extends JDialog
 	Color purple = new Color(133,6,191);
 	Color lightBlue = new Color(91,152,255);
 	Color navy  = new Color(39,6,184);
-	private boardPanel basic;
+	public boardPanel basic;
 	Tile[] tileArray = new Tile[40];
 	
 	Board()
@@ -22,7 +22,7 @@ public class Board extends JDialog
 		
 		//initialize JFrame
 		setTitle("Monopoly");
-		setSize(new Dimension(1170, 700));
+		setSize(new Dimension(1270, 700));
 		setResizable(false);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
@@ -73,9 +73,8 @@ public class Board extends JDialog
 		tileArray[39] = new Tile(400, "Boardwalk", Color.blue, 0);		
 	}
 	
-	public void refresh()
+	public boardPanel getBoardPanel()
 	{
-		
+		return basic;
 	}
-
 }

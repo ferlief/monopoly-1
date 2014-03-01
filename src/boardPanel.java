@@ -83,7 +83,6 @@ public class boardPanel extends JPanel
 			bottomPanel.add(tileArray[1].getTilePanel());
 			bottomPanel.add(tileArray[0].getTilePanel());
 			
-			
 		add(topPanel);
 		add(center);
 		add(bottomPanel);

@@ -4,6 +4,10 @@ import java.awt.*;
 
 public class pieceHolder extends JPanel
 {
+	/**
+	 * Displays icons that represent player's pieces (hat, dog, etc);
+	 */
+	private static final long serialVersionUID = 1L;
 	ImageIcon hatIcon = new ImageIcon(getClass().getResource("hat.png"));
 	JLabel hatLabel = new JLabel(hatIcon);
 	ImageIcon carIcon = new ImageIcon(getClass().getResource("car.png"));
@@ -38,6 +42,7 @@ public class pieceHolder extends JPanel
 			dogLabel.setVisible(true);
 		else if (i == 4)
 			shipLabel.setVisible(true);
+		revalidate();
 	}
 	
 	public void hidePiece(int i)
@@ -50,5 +55,6 @@ public class pieceHolder extends JPanel
 			dogLabel.setVisible(false);
 		else if (i == 4)
 			shipLabel.setVisible(false);
+		revalidate();
 	}
 }

@@ -18,7 +18,7 @@ public class Dice
     private final static Random rand2 = new Random();
     
     //Rolls the dice and returns the total
-    public static void Roll()
+    public void Roll()
     {
         die1 = rand1.nextInt(6) + 1;
         die2 = rand2.nextInt(6) + 1;
@@ -32,7 +32,7 @@ public class Dice
     
     //Returns true if the dice rolled are equal
     //Could be useful for implementing the "3 doubles go to jail" rule
-    public static boolean CheckIfEqual()
+    public boolean CheckIfEqual()
     {
         if (die1 == die2)
         {
