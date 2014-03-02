@@ -9,7 +9,7 @@ public class Game
 {
 	Player playerArray[] = new Player[4];
 	Board gameBoard;
-	String message;
+	String message = "";
 	Dice dice = new Dice();
 	int spacesToMove;
 	int diceTemp;
@@ -120,6 +120,7 @@ public class Game
         //Pass Go, get $200
         if ((oldLoc > 25) && (location < 20))
         {
+        	message = "Pass go, collect $200";
             player.money = player.money + 200;
             //Need to make it display that the player got money for passing go.
         }
@@ -146,6 +147,9 @@ public class Game
 		rollWindow.setVisible(true);  	
 		rollWindow.setAlwaysOnTop(true);
 		
+		// Display any messages.
+		JLabel messages = new JLabel(message);
+		
 		// Display player name.
 		JLabel playerName = new JLabel("Player: " + player.name);
 		
@@ -159,6 +163,7 @@ public class Game
     	RollHandler rollAction = new RollHandler();
     	JButton rollButton = new JButton("End Turn");
     	rollButton.addActionListener(rollAction);
+    	rollPanel.add(messages);
     	rollPanel.add(playerName);
     	rollPanel.add(playerMoney);
     	rollPanel.add(diceDisplay);
