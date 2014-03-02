@@ -59,4 +59,16 @@ public class Player
     {
     	return money;
     }
+    
+    //function to take money.
+    public void deductMoney(int debit)
+    {
+    	money = money - debit;
+    }
+    
+    //function to add money.
+    public void addMoney(int credit)
+    {
+    	money = money + credit;
+    }
 }
