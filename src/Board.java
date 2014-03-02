@@ -22,7 +22,7 @@ public class Board extends JDialog
 		
 		//initialize JFrame
 		setTitle("Monopoly");
-		setSize(new Dimension(1270, 700));
+		setSize(new Dimension(1170, 700));
 		setResizable(false);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);

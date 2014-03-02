@@ -1,3 +1,4 @@
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -11,14 +12,15 @@ public class Game
 	String message;
 	Dice dice = new Dice();
 	int spacesToMove;
+	int diceTemp;
 	boolean endGame = false;
 	boolean turnEnd = false;
 	rollPanel rollPanel = new rollPanel();
+	JDialog rollWindow = new JDialog();
 
 	Game()
 	{
 		gameBoard = new Board();
-		createRollPanel();
 		
 		for (int i = 0; i < 4; i++)
 		{
@@ -39,26 +41,27 @@ public class Game
 				turnEnd = false;
 						
 				// Update info/roll panel with player info; pause until roll button is pressed.
-				updateRollPanel(playerArray[i]);
+				diceTemp = dice.roll();
+				createRollPanel(playerArray[i]);
 				while (turnEnd == false)
-					try {
+					try 
+					{
 						Thread.currentThread().sleep(1000);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+					} 
+					catch (InterruptedException e) 
+					{
 					}
 				
-				turn(playerArray[i]);	            
+				turn(playerArray[i], diceTemp);	            
             }
 		}
 	}
 	
-	public void turn(Player player)
+	public void turn(Player player, int diceTemp)
 	{
 		//If the player isn't in jail, he can roll the dice and move
         if(player.inJail == false)
         {
-            dice.Roll();
             //If they rolled 3 doubles in a row, they go to jail
             if (player.doublesInARow == 3)
             {
@@ -83,13 +86,11 @@ public class Game
             {
             	player.money = player.money - 50;
             	player.inJail = false;
-                dice.Roll();
                 move(player, dice.getSum(), gameBoard);
             }
             //He tries to roll doubles to get out of jail.
             else
             {
-                dice.Roll();
                 player.jailRollCounter = player.jailRollCounter + 1;
                 //If a double is rolled, he is out of jail and moves the amount of spaces
                 if (dice.CheckIfEqual() == true)
@@ -131,25 +132,40 @@ public class Game
         }
     }
     
-    public void updateRollPanel(Player player)
+    public void createRollPanel(Player player)
     {
-    	rollPanel.setMoney(player.money);
-    	rollPanel.setName(player.name);
+    	rollPanel.removeAll();
     	rollPanel.revalidate();
-    }
-    
-    public void createRollPanel()
-    {
+    	rollPanel.repaint();
+		//initialize JFrame
+		rollWindow.setTitle("Roll");
+		rollWindow.setSize(new Dimension(150, 100));
+		rollWindow.setResizable(false);
+		rollWindow.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		rollWindow.setLocationRelativeTo(null);
+		rollWindow.setVisible(true);  	
+		rollWindow.setAlwaysOnTop(true);
+		
+		// Display player name.
+		JLabel playerName = new JLabel("Player: " + player.name);
+		
+		// Display player money.
+		JLabel playerMoney = new JLabel("Current Cash: $" + String.valueOf(player.getMoney()));
+		
+		// Display what the player rolled.
+		JLabel diceDisplay = new JLabel("You rolled: " + String.valueOf(diceTemp));
+		
+		// Add roll button.
     	RollHandler rollAction = new RollHandler();
-    	
-    	JButton rollButton = new JButton("Roll the Dice.");
+    	JButton rollButton = new JButton("End Turn");
     	rollButton.addActionListener(rollAction);
-    	
-    	// Add roll button.
+    	rollPanel.add(playerName);
+    	rollPanel.add(playerMoney);
+    	rollPanel.add(diceDisplay);
     	rollPanel.add(rollButton);
-		message = "You rolled " + message;
-		//JOptionPane.showMessageDialog(gameBoard.getBoardPanel(), message, "Roll", JOptionPane.PLAIN_MESSAGE);
-		int result = JOptionPane.showConfirmDialog(null, rollPanel, "Test,", JOptionPane.PLAIN_MESSAGE);
+    	rollWindow.add(rollPanel);
+
+		//int result = JOptionPane.showConfirmDialog(null, rollPanel, message, JOptionPane.PLAIN_MESSAGE);
    
     }
     

@@ -54,4 +54,9 @@ public class Player
     {
     	return ID;
     }
+    
+    public int getMoney()
+    {
+    	return money;
+    }
 }

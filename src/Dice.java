@@ -25,6 +25,14 @@ public class Dice
         sum = die1 + die2;
     }
     
+    public int roll()
+    {
+        die1 = rand1.nextInt(6) + 1;
+        die2 = rand2.nextInt(6) + 1;
+        sum = die1 + die2;
+        return sum;
+    }
+    
     public static int getSum()
     {
         return sum;
