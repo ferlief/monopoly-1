@@ -1,18 +1,16 @@
 import javax.swing.*;
-
 import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.io.IOException;
 
-public class Board extends JDialog
+public class Board extends JFrame
 {
 	Color purple = new Color(133,6,191);
 	Color lightBlue = new Color(91,152,255);
 	Color navy  = new Color(39,6,184);
-	public boardPanel basic;
-	Tile[] tileArray = new Tile[40];
+	private boardPanel basic;
+	private Tile[] tileArray = new Tile[40];
 	
+	// Creates a new Board object;
+	// displayed in a customized JFrame
 	Board()
 	{
 		initializeTiles();
@@ -22,13 +20,19 @@ public class Board extends JDialog
 		
 		//initialize JFrame
 		setTitle("Monopoly");
-		setSize(new Dimension(1170, 700));
+		setSize(new Dimension(1130, 700));
 		setResizable(false);
-		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
 	
+	// Creates all tile objects.
+	// code on the end indicates the tile type.
+	// 0 = standard property tiles
+	// 1 = big tiles
+	// 2 = utility tiles
+	// 3 = special event tiles
 	public void initializeTiles()
 	{
 		tileArray[0] = new Tile(0, "GO!", Color.white, 1);
@@ -73,8 +77,14 @@ public class Board extends JDialog
 		tileArray[39] = new Tile(400, "Boardwalk", Color.blue, 0);		
 	}
 	
+	// Return the board panel.
 	public boardPanel getBoardPanel()
 	{
 		return basic;
+	}
+	
+	public Tile[] getTileArray()
+	{
+		return tileArray;
 	}
 }

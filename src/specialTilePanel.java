@@ -1,5 +1,4 @@
 import javax.swing.*;
-import javax.swing.text.BadLocationException;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
@@ -13,11 +12,6 @@ public class specialTilePanel extends tilePanel
 	
 	specialTilePanel(int price, String name, Color tileColor)
 	{
-		// tilePanel settings
-		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		setBorder(BorderFactory.createLineBorder(Color.black, 1));
-		setPreferredSize(new Dimension(100,130));
-		
 		// Displays property name.
 		JTextPane namePane = new JTextPane();
 			namePane.setPreferredSize(new Dimension(100,40));

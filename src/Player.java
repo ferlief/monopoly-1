@@ -7,7 +7,6 @@
  *   necessary for the game.                        *
  *                                                  *
  ****************************************************/
-import java.util.Scanner;
 
 public class Player 
 {

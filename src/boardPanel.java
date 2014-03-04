@@ -5,6 +5,7 @@ import java.awt.*;
 
 public class boardPanel extends JPanel
 {
+	// Creates a panel which holds all the tilePanels.
 	boardPanel(Tile[] tileArray)
 	{
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -21,6 +22,7 @@ public class boardPanel extends JPanel
 			topPanel.add(tileArray[28].getTilePanel());
 			topPanel.add(tileArray[29].getTilePanel());
 			topPanel.add(tileArray[30].getTilePanel());
+			
 		JPanel center = new JPanel(new FlowLayout(FlowLayout.LEFT,0,0));
 			JPanel leftPanel = new JPanel(new GridLayout(0,1));
 				leftPanel.add(tileArray[19].getTilePanel());
@@ -70,6 +72,7 @@ public class boardPanel extends JPanel
 			center.add(leftPanel);
 			center.add(middlePanel);
 			center.add(rightPanel);
+		
 		JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.LEFT,0,0));
 			bottomPanel.add(tileArray[10].getTilePanel());
 			bottomPanel.add(tileArray[9].getTilePanel());

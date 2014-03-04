@@ -1,5 +1,4 @@
 import javax.swing.*;
-import javax.swing.text.BadLocationException;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
@@ -9,9 +8,6 @@ import java.awt.*;
 public class utilityTilePanel extends tilePanel
 {
 	ImageIcon utilityIcon;
-	private JTextArea nameText;
-	private JTextArea priceText;
-	houseHolder playerHouses = new houseHolder();
 	
 	utilityTilePanel(int price, String name, Color tileColor)
 	{

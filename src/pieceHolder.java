@@ -4,6 +4,7 @@ import java.awt.*;
 
 public class pieceHolder extends JPanel
 {
+	// Initialize icons.
 	ImageIcon hatIcon = new ImageIcon(getClass().getResource("hat.png"));
 	JLabel hatLabel = new JLabel(hatIcon);
 	ImageIcon carIcon = new ImageIcon(getClass().getResource("car.png"));

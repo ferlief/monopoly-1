@@ -5,19 +5,23 @@ import java.awt.*;
 
 public class tilePanel extends JPanel
 {
-	private JTextArea nameText;
-	private JTextArea priceText;
-	pieceHolder playerPieces = new pieceHolder();
-	houseHolder playerHouses = new houseHolder();
+	protected pieceHolder playerPieces = new pieceHolder();
+	private houseHolder playerHouses = new houseHolder();
 	
+	// Default constructor called by subclasses.
 	tilePanel()
 	{
+		// Layout settings
+		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		setBorder(BorderFactory.createLineBorder(Color.black, 1));
+		setPreferredSize(new Dimension(100,130));
+		
 		playerPieces = new pieceHolder();
 	}
 	
 	tilePanel(int price, String name, Color tileColor)
 	{
-		// tilePanel settings
+		// Layout settings
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		setBorder(BorderFactory.createLineBorder(Color.black, 1));
 		setPreferredSize(new Dimension(100,130));
@@ -55,5 +59,10 @@ public class tilePanel extends JPanel
 		add(playerPieces);
 		add(playerHouses);
 		add(pricePane);
+	}
+	
+	public pieceHolder getPlayerPieces()
+	{
+		return playerPieces;
 	}
 }
