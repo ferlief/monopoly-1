@@ -10,7 +10,6 @@ public class specialTilePanel extends tilePanel
 {
 	ImageIcon specialIcon;
 	String description = "";
-	pieceHolder playerPieces = new pieceHolder();
 	
 	specialTilePanel(int price, String name, Color tileColor)
 	{

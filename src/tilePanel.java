@@ -12,7 +12,7 @@ public class tilePanel extends JPanel
 	
 	tilePanel()
 	{
-		
+		playerPieces = new pieceHolder();
 	}
 	
 	tilePanel(int price, String name, Color tileColor)

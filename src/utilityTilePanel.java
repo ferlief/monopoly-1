@@ -11,7 +11,6 @@ public class utilityTilePanel extends tilePanel
 	ImageIcon utilityIcon;
 	private JTextArea nameText;
 	private JTextArea priceText;
-	pieceHolder playerPieces = new pieceHolder();
 	houseHolder playerHouses = new houseHolder();
 	
 	utilityTilePanel(int price, String name, Color tileColor)

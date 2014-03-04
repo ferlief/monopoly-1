@@ -13,7 +13,7 @@ public class rollPanel extends tilePanel
 		// tilePanel settings
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		setBorder(BorderFactory.createLineBorder(Color.black, 1));
-		setPreferredSize(new Dimension(100,130));
+		setPreferredSize(new Dimension(400,400));
 //		
 //		// Displays Info
 //		JTextPane namePane = new JTextPane();

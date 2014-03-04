@@ -34,23 +34,19 @@ public class Game
 		gameBoard.tileArray[0].getTilePanel().playerPieces.revealPiece(2);
 		gameBoard.tileArray[0].getTilePanel().playerPieces.revealPiece(3);
 		gameBoard.tileArray[0].getTilePanel().playerPieces.revealPiece(4);
+    	
 		while (endGame == false)
 		{
 			for (int i = 0; i < 4; i++)
 			{
 				turnEnd = false;
 						
-				// Update info/roll panel with player info; pause until roll button is pressed.
+				// Update info/roll panel with player info; pause until 'end turn' button is pressed.
 				diceTemp = dice.roll();
 				createRollPanel(playerArray[i]);
 				while (turnEnd == false)
-					try 
-					{
-						Thread.currentThread().sleep(1000);
-					} 
-					catch (InterruptedException e) 
-					{
-					}
+					try 	{Thread.currentThread().sleep(1000);} 
+					catch 	(InterruptedException e){}
 				
 				turn(playerArray[i], diceTemp);	            
             }
@@ -140,7 +136,7 @@ public class Game
     	rollPanel.repaint();
 		//initialize JFrame
 		rollWindow.setTitle("Roll");
-		rollWindow.setSize(new Dimension(150, 100));
+		rollWindow.setSize(new Dimension(200, 120));
 		rollWindow.setResizable(false);
 		rollWindow.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		rollWindow.setLocationRelativeTo(null);

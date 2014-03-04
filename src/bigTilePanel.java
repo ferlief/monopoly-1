@@ -8,7 +8,6 @@ public class bigTilePanel extends tilePanel
 	ImageIcon bigIcon;
 	String description = "";
 	
-	pieceHolder playerPieces = new pieceHolder();
 	bigTilePanel(int price, String name, Color tileColor)
 	{
 		// tilePanel settings
