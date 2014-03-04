@@ -122,10 +122,43 @@ public class Game
         }
         
         //Go to jail
-        if (location == 30)
+        else if (location == 30)
         {
             location = 10;
             player.inJail = true;
+        }
+        //Income taxes
+        else if(location == 4)
+        {
+        	int percentage = player.getMoney() / 10;
+        	if(percentage <= 200)
+        	{
+        		player.deductMoney(percentage);
+        		//rollPanel.messages.setText("You have paid 10% of your money in Income Taxes.");
+        	}
+        	else
+        	{
+        		player.deductMoney(200);
+        		//rollPanel.messages.setText("You have paid $200 of your money in Income Taxes.");
+        	}
+        }
+        //Luxury Tax
+        else if(location == 38)
+        {
+        	player.deductMoney(75);
+        	//rollPanel.messages.setText("You have paid $75 of your money in Luxury Taxes.");
+        }
+        //Free Parking
+        else if(location == 20)
+        {
+        	//Do nothing because it is free parking.
+        }
+        
+        
+        //Else for Properties
+        else
+        {
+        	//Insert standard price display things etc for properties.
         }
     }
     
